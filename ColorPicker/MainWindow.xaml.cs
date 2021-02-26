@@ -141,6 +141,7 @@ namespace ColorPicker
             tbxG.Text = c.G.ToString();
             tbxB.Text = c.B.ToString();
 
+
             bdrRGB.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B));
         }
 
