@@ -1,0 +1,94 @@
+﻿<mah:MetroWindow x:Class="ColorPicker.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 Title="MainWindow"
+                 Width="500"
+                 Height="300"
+                 WindowStartupLocation="CenterScreen"
+                 mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="TextBlockKey" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="BorderKey" TargetType="Border">
+            <Setter Property="Background" Value="SkyBlue"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <ListBox Name="listbox"  Grid.RowSpan="5" />
+
+        <Border Style="{StaticResource BorderKey}" Grid.Column="1" Grid.Row="0" >
+            <TextBlock Text="Position" Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="2" Grid.Row="0" >
+            <TextBlock Name="tbxX"  Text="X : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="3" Grid.Row="0" >
+            <TextBlock Name="tbxY" Text="Y : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="4" Grid.Row="0" Name="bdrRGB" >
+        </Border>
+        
+        
+        <Border Style="{StaticResource BorderKey}" Grid.Column="1" Grid.Row="1" >
+            <TextBlock Text="RGB" Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="2" Grid.Row="1" Background="Red" >
+            <TextBlock Name="tbxR" Text="R : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="3" Grid.Row="1" Background="Green" >
+            <TextBlock Name="tbxG" Text="G : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="4" Grid.Row="1" Background="Blue" >
+            <TextBlock Name="tbxB" Text="B : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+
+        <Border Style="{StaticResource BorderKey}" Grid.Column="1" Grid.Row="2" >
+            <TextBlock Text="HSV" Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="2" Grid.Row="2" Background="DarkGray">
+            <TextBlock Name="tbxH" Text="H : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="3" Grid.Row="2" Background="DarkGray" >
+            <TextBlock Name="tbxS" Text="S : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="4" Grid.Row="2" Background="DarkGray" >
+            <TextBlock Name="tbxV" Text="V : " Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        
+        <Border Style="{StaticResource BorderKey}" Grid.Column="1" Grid.Row="3" >
+            <TextBlock Text="HexCode" Style="{StaticResource TextBlockKey}"/>
+        </Border>
+        <Border Style="{StaticResource BorderKey}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Background="LightGray">
+            <TextBlock Name="tbxHexCode" Text="######" Style="{StaticResource TextBlockKey}"/>
+        </Border>
+
+        <Button Grid.Column="2" Grid.Row="4" Name="btn1" Content="btn1" Click="btn1_Click"/>
+        <Button Grid.Column="3" Grid.Row="4" Name="btn2" Content="btn2" Click="btn2_Click"/>
+        <Button Grid.Column="4" Grid.Row="4" Name="btn3" Content="btn3" Click="btn3_Click"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="5" Name="tbxTmp" />
+    </Grid>
+</mah:MetroWindow>
