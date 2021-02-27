@@ -4,8 +4,8 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="MainWindow"
-                 Width="650"
+                 Title="Color Picker"
+                 Width="750"
                  Height="300"
                  WindowStartupLocation="CenterScreen"
                  mc:Ignorable="d">
@@ -37,7 +37,21 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <ListBox Name="listbox"  Grid.RowSpan="5" />
+        <ListView Name="listView"  Grid.RowSpan="5" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding X}" Header="X" Width="50" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Y}" Header="Y" Width="50" />
+                    <GridViewColumn DisplayMemberBinding="{Binding R}" Header="R" Width="35" />
+                    <GridViewColumn DisplayMemberBinding="{Binding G}" Header="G" Width="35" />
+                    <GridViewColumn DisplayMemberBinding="{Binding B}" Header="B" Width="35" />
+                    <GridViewColumn DisplayMemberBinding="{Binding H}" Header="H" Width="60" />
+                    <GridViewColumn DisplayMemberBinding="{Binding S}" Header="S" Width="60" />
+                    <GridViewColumn DisplayMemberBinding="{Binding V}" Header="V" Width="60" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Hex}" Header="Hex" Width="80" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <Border Style="{StaticResource BorderKey}" Grid.Column="1" Grid.Row="0" >
             <TextBlock Text="Position" Style="{StaticResource TextBlockKey}"/>
@@ -85,9 +99,9 @@
             <TextBlock Name="tbxHexCode" Text="######" Style="{StaticResource TextBlockKey}"/>
         </Border>
 
-        <Button Grid.Column="2" Grid.Row="4" Name="btn1" Content="btn1" Click="btn1_Click"/>
-        <Button Grid.Column="3" Grid.Row="4" Name="btn2" Content="btn2" Click="btn2_Click"/>
-        <Button Grid.Column="4" Grid.Row="4" Name="btn3" Content="btn3" Click="btn3_Click"/>
+        <Button Grid.Column="2" Grid.Row="4" Name="btn1" Content="START" Click="btn1_Click"/>
+        <Button Grid.Column="3" Grid.Row="4" Name="btn2" Content="STOP" Click="btn2_Click"/>
+        <Button Grid.Column="4" Grid.Row="4" Name="btn3" Content="TEST" Click="btn3_Click"/>
 
         <TextBlock Grid.Column="1" Grid.Row="5" Name="tbxTmp" />
     </Grid>

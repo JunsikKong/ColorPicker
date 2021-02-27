@@ -22,18 +22,22 @@ using WColor = System.Windows.Media.Color;
 using DColor = System.Drawing.Color;
 using WPoint = System.Windows.Point;
 using DPoint = System.Drawing.Point;
-
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ColorPicker
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
+    
     public partial class MainWindow
     {
         Thread RunMainThread = null;
         private bool isThreadEnding = false;
         private bool isThreadRun = false;
+
+        public List<ColorData> listColor { get; set; }
 
         [DllImport("user32.dll")]
         public static extern UInt16 GetAsyncKeyState(Int32 vKey);
@@ -53,12 +57,14 @@ namespace ColorPicker
             public double V;
         }
 
-        
-
 
         public MainWindow()
         {
             InitializeComponent();
+
+            listColor = new List<ColorData>();
+
+            listView.ItemsSource = listColor;
         }
 
         void RunAct()
@@ -136,21 +142,42 @@ namespace ColorPicker
 
         void RunAddListBox(POINT p, DColor c, HSV hsv)
         {
-            string str = "";
-            str += "X:" + p.X.ToString() + ",\t";
-            str += "Y:" + p.Y.ToString() + ",\t";
-            str += "R:" + c.R.ToString() + ",\t";
-            str += "G:" + c.G.ToString() + ",\t";
-            str += "B:" + c.B.ToString() + ",\t";
-            str += "H:" + hsv.H.ToString("F2") + ",\t";
-            str += "S:" + hsv.S.ToString("F2") + ",\t";
-            str += "V:" + hsv.V.ToString("F2");
+            ColorData cd = new ColorData();
 
-            //str = Convert.ToString(c.R, 16);
+            cd.X = p.X;
+            cd.Y = p.Y;
+            cd.R = c.R;
+            cd.G = c.G;
+            cd.B = c.B;
+            cd.H = hsv.H;
+            cd.S = hsv.S;
+            cd.V = hsv.V;
+            cd.Hex = c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
 
+            listColor.Add(cd);
+            listView.Items.Refresh();
 
-            listbox.Items.Add(str);
-            listbox.SelectedIndex = listbox.Items.Count - 1;
+            if (VisualTreeHelper.GetChildrenCount(listView) > 0)
+            {
+                Border border = (Border)VisualTreeHelper.GetChild(listView, 0);
+                ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(border, 0);
+                scrollViewer.ScrollToBottom();
+            }
+
+            listView.SelectedIndex = listView.Items.Count - 1;
+
+            //string str = "";
+            //str += "X:" + p.X.ToString() + ",\t";
+            //str += "Y:" + p.Y.ToString() + ",\t";
+            //str += "R:" + c.R.ToString() + ",\t";
+            //str += "G:" + c.G.ToString() + ",\t";
+            //str += "B:" + c.B.ToString() + ",\t";
+            //str += "H:" + hsv.H.ToString("F2") + ",\t";
+            //str += "S:" + hsv.S.ToString("F2") + ",\t";
+            //str += "V:" + hsv.V.ToString("F2");
+
+            //listbox.Items.Add(str);
+            //listbox.SelectedIndex = listbox.Items.Count - 1;
         }
 
 
@@ -250,7 +277,7 @@ namespace ColorPicker
 
         private void btn3_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
     }
